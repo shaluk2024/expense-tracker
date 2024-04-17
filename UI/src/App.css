@@ -112,7 +112,6 @@ footer > .home-tab, .spend-tab{
 .summary-container{
     display: flex;
     height: 7rem;
-    /* border: 2px solid black; */
     position: relative;
     top: 7rem;
     flex-wrap: wrap;
@@ -126,20 +125,7 @@ footer > .home-tab, .spend-tab{
     flex-direction: column;
     justify-content: center;
     width: 33.33%;
-    /* display: flex;
-    justify-content: center;
-    align-items: center; */
     padding-left: 1rem;
-}
-
-
-.month-one, .month-two, .month-three{
-    display: flex;
-    flex-direction: column;
-    width: 33.33%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .summary-container .date-span{
@@ -150,19 +136,6 @@ footer > .home-tab, .spend-tab{
 
 .summary-container .amount-span{
     font-size: large;
-}
-
-
-
-.summary-container > .month-one, .month-three{
-    background-color: lightgray;
-    font-size: 1.5rem;
-}
-
-.summary-container > .month-two{
-    background-color: white;
-    color: black;
-    font-size: 1.5rem;
 }
 
 .expense-box{
