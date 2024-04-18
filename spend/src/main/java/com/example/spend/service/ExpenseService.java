@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Month;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -70,8 +71,8 @@ public class ExpenseService {
         final  var  response = new GetExpensesSummaryResponse();
         LocalDate startDate = LocalDate.now().minusMonths(2).withDayOfMonth(1);
 
-        final  List<Expense> expenses = expenseRepository.findByDateGreaterThanEqual(startDate);
-        Map<String, BigDecimal> map = new HashMap<>();
+        final  List<Expense> expenses = expenseRepository.findByDateGreaterThanEqualOrderByDateDesc(startDate);
+        Map<String, BigDecimal> map = new LinkedHashMap<String, BigDecimal>();
         for(final var expense : expenses)
         {
             if (expense.getAmount() != null && expense.getDate() != null )

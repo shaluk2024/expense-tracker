@@ -14,5 +14,5 @@ public interface ExpenseRepository extends CrudRepository<Expense, Long> {
 
     List<Expense> findByOrderByIdDesc();
 
-    List<Expense> findByDateGreaterThanEqual(LocalDate startDate);
+    List<Expense> findByDateGreaterThanEqualOrderByDateDesc(LocalDate startDate);
 }
