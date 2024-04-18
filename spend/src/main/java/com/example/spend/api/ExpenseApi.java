@@ -26,9 +26,15 @@ public class ExpenseApi {
                 , description)));
     }
 
+    // @GetMapping("/summary")
+    // public ResponseEntity<GetMonthNameResponse> getMonthlyExpenditure(){
+    //     return ResponseEntity.ok(expenseService.getMonthlyExpenditure());
+    // }
+
     @GetMapping("/summary")
-    public ResponseEntity<GetMonthNameResponse> getMonthlyExpenditure(){
-        return ResponseEntity.ok(expenseService.getMonthlyExpenditure());
+    public ResponseEntity<GetExpensesSummaryResponse> getMonthlyExpenses(final BigDecimal amount
+            , final String monthYear){
+        return ResponseEntity.ok(expenseService.getMonthlyExpenses(new GetExpensesSummaryRequest(amount, monthYear)));
     }
 
     @CrossOrigin(origins = "http://localhost:5173")

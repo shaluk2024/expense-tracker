@@ -2,7 +2,6 @@ package com.example.spend.data;
 
 import java.io.Serial;
 import java.math.BigDecimal;
-import java.time.LocalDate;
 
 public class ExpensesSummary {
     @Serial
@@ -10,30 +9,20 @@ public class ExpensesSummary {
 
     private final BigDecimal amount;
 
-    private final LocalDate date;
+    private final String monthYear;
 
-    private final String description;
-
-    public ExpensesSummary(final BigDecimal amount, final LocalDate date, final String description) {
+    public ExpensesSummary(final BigDecimal amount, final String monthYear) {
         this.amount = amount;
-        this.date = date;
-        this.description = description;
+        this.monthYear = monthYear;
     }
 
     public BigDecimal getAmount() {
         return amount;
     }
 
-    public LocalDate getDate() {
-        return date;
+    public String getMonthYear() {
+        return monthYear;
     }
-
-    public String getDescription() {
-        return description;
-    }
-
-    
-
     
 
 }

@@ -1,10 +1,11 @@
 package com.example.spend.persistence;
 
-import common.Model;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.repository.NoRepositoryBean;
 import org.springframework.data.repository.PagingAndSortingRepository;
+
+import com.example.spend.common.Model;
 
 import java.util.List;
 

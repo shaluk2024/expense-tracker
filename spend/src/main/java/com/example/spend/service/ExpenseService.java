@@ -6,8 +6,12 @@ import com.example.spend.persistence.ExpenseRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.Month;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ExpenseService {
@@ -30,21 +34,21 @@ public class ExpenseService {
         return response;
     }
 
-    public GetMonthNameResponse getMonthlyExpenditure() {
-        final var response = new GetMonthNameResponse();
+    // public GetMonthNameResponse getMonthlyExpenditure() {
+    //     final var response = new GetMonthNameResponse();
 
-        List<MonthlyExpendituresSum> expenditures = expenseRepository.findGroupByMonthTotalExpenditure();
+    //     List<MonthlyExpendituresSum> expenditures = expenseRepository.findGroupByMonthTotalExpenditure();
 
-        for (final var monthlyExpenditure : expenditures) {
+    //     for (final var monthlyExpenditure : expenditures) {
 
 
-            String monthAndYear= Month.of(monthlyExpenditure.getMonth()).name().substring(0, 3) + "," + monthlyExpenditure.getYear();
+    //         String monthAndYear= Month.of(monthlyExpenditure.getMonth()).name().substring(0, 3) + "," + monthlyExpenditure.getYear();
 
-            response.addExpenditure(new GetExpensesByMonthNameSummary(monthAndYear, monthlyExpenditure.getSum()));
+    //         response.addExpenditure(new GetExpensesByMonthNameSummary(monthAndYear, monthlyExpenditure.getSum()));
 
-        }
-        return response;
-    }
+    //     }
+    //     return response;
+    // }
 
 
 
@@ -60,6 +64,32 @@ public class ExpenseService {
         return  response;
 
 
+    }
+
+    public GetExpensesSummaryResponse getMonthlyExpenses(GetExpensesSummaryRequest request) {
+        final  var  response = new GetExpensesSummaryResponse();
+        LocalDate startDate = LocalDate.now().minusMonths(2).withDayOfMonth(1);
+
+        final  List<Expense> expenses = expenseRepository.findByDateGreaterThanEqual(startDate);
+        Map<String, BigDecimal> map = new HashMap<>();
+        for(final var expense : expenses)
+        {
+            if (expense.getAmount() != null && expense.getDate() != null )
+            {
+                
+                Month month = expense.getDate().getMonth();
+                int  year = expense.getDate().getYear();
+                String monthYear = String.valueOf(month) + " " + year;
+
+                map.put(monthYear, map.getOrDefault(monthYear, BigDecimal.ZERO).add(expense.getAmount()));
+
+            }
+        }
+
+        for (final var entry: map.entrySet()) {
+            response.addExpense(new ExpensesSummary(entry.getValue(), entry.getKey()));
+        }
+        return response;
     }
 
 }

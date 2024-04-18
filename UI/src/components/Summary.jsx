@@ -13,7 +13,7 @@ const Summary = () => {
         console.log(response)
         console.log(response.data)
         console.log(response.data.expenses)
-        setData(response.data.expenditures)
+        setData(response.data.expenses)
       });
   
 
@@ -23,8 +23,8 @@ const Summary = () => {
     <div className='summary-container'>
       {
         data.map((item, index) => <div key={index} className='summary-item'>
-        <span className='date-span'>{item.monthName}</span>
-        <span className="amount-span">{item.totalSum}</span>
+        <span className='date-span'>{item.monthYear}</span>
+        <span className="amount-span">{item.amount}</span>
     </div> )
       }
         
