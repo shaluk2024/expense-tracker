@@ -9,7 +9,6 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.Month;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,24 +33,6 @@ public class ExpenseService {
 
         return response;
     }
-
-    // public GetMonthNameResponse getMonthlyExpenditure() {
-    //     final var response = new GetMonthNameResponse();
-
-    //     List<MonthlyExpendituresSum> expenditures = expenseRepository.findGroupByMonthTotalExpenditure();
-
-    //     for (final var monthlyExpenditure : expenditures) {
-
-
-    //         String monthAndYear= Month.of(monthlyExpenditure.getMonth()).name().substring(0, 3) + "," + monthlyExpenditure.getYear();
-
-    //         response.addExpenditure(new GetExpensesByMonthNameSummary(monthAndYear, monthlyExpenditure.getSum()));
-
-    //     }
-    //     return response;
-    // }
-
-
 
     public SaveExpenseResponse saveExpense(final SaveExpenseRequest request){
         Expense expense = new Expense(request.getAmount(), request.getDate(), request.getDescription());
