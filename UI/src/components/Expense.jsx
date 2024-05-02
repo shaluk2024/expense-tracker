@@ -1,12 +1,12 @@
 
-const Expense = ({amount, date, description}) => {
+const Expense = ({amount, date, description, currency}) => {
   return (
     <div className='expense-box'>
        <div className='description-box'>
             {description}
        </div>
        <div className='amount-box'>
-        <span>{amount}</span>
+        <span>{currency} {amount}</span>
         <span>{date}</span>
        </div>
 

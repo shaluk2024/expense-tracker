@@ -6,8 +6,14 @@ const baseURL = "http://localhost:8080/expenses/add";
 const SaveMain = () => {
 
   const[amount, setAmount] =  useState(0);
-  const[date, setDate] = useState("");
+  const[date, setDate] = useState(new Date().toUTCString());
   const[description, setDescription] = useState("");
+  const [selectedCurrency, setSelectedCurrency] = useState('');
+
+  // Event handler to handle change in select value
+  const handleSelectChange = (event) => {
+    setSelectedCurrency(event.target.value);
+  };
 
   const handleDescChange = (e) => {
     setDescription(e.target.value);
@@ -40,11 +46,14 @@ const SaveMain = () => {
       return
     }
 
+    console.log("date: " + date)
+
     
     const data = {
       amount: amount,
-      date: date,
-      description: description
+      date: new Date(date).toUTCString(),
+      description: description,
+      currency: selectedCurrency
     };
 
 
@@ -71,6 +80,12 @@ const SaveMain = () => {
         <input required type="number" name="amount" id="amount-field" placeholder="Amount (e.g. 24,000)" value={amount} onChange={handleAmountChange}/>
         <input required type="date" name="date" id="date-field" placeholder="Date (e.g., January 1, 2020)" value={date} onChange={handleDateChange} max={new Date().toISOString().split("T")[0]}/>
 
+        <select className="currency-box" value={selectedCurrency} onChange={handleSelectChange}>
+        <option value="">Select a currency</option>
+        <option value="INR">INR</option>
+        <option value="USD">USD</option>
+        <option value="EUR">EUR</option>
+      </select>
     </div>
 </div>
   )

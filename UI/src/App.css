@@ -179,7 +179,7 @@ footer > .home-tab, .spend-tab{
     flex-direction: column;
 }
 
-.form-container > input{
+.form-container > input, .currency-box{
     font-size: 1.3rem;
     padding: 1rem;
     margin: 1rem;

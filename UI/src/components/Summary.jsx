@@ -24,7 +24,7 @@ const Summary = () => {
       {
         data.map((item, index) => <div key={index} className='summary-item'>
         <span className='date-span'>{item.monthYear}</span>
-        <span className="amount-span">{item.amount}</span>
+        <span className="amount-span">{item.currency} {item.amount}</span>
     </div> )
       }
         

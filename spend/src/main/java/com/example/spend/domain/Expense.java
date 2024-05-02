@@ -3,10 +3,13 @@ package com.example.spend.domain;
 import jakarta.persistence.*;
 
 import javax.validation.constraints.*;
+
+import com.example.spend.common.StringUtil;
+
 import java.io.Serial;
 import java.math.BigDecimal;
-import java.time.LocalDate;
-//import java.util.Date;
+//import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Table(name = "expense")
@@ -14,19 +17,18 @@ public class Expense {
     @Serial
     private static final long serialVersionUID = 1L;
 
-    @Column(name = "id", nullable = false, updatable = false)
-    @Id
-    //@Generated(GenerationTime.INSERT)
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    @Column(length = 20, name = "amount", nullable = false, updatable = false)
+    @Column( name = "amount", nullable = false, updatable = false)
     @NotNull
     private BigDecimal amount;
 
-    @Column(length = 20, name = "date", nullable = false, updatable = false)
+    @Column(name = "currency", nullable = false, updatable = false)
+    @Enumerated(EnumType.STRING)
     @NotNull
-    private LocalDate date;
+    private Currency currency;
+
+    @Column( name = "date", nullable = false, updatable = false)
+    @NotNull
+    private Date date;
 
     @Column(length = 20, name = "description", nullable = false, updatable = false)
     @NotBlank
@@ -37,15 +39,22 @@ public class Expense {
             , min = 3)
     private String description;
 
+    @Column(name = "id", nullable = false, updatable = false)
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
+
     Expense(){
         super();
     }
 
-    public Expense(final BigDecimal amount, final LocalDate date, final String description) {
+    public Expense(final String description, final Date date, final BigDecimal amount, final Currency currency) {
         this();
-        setAmount(amount);
-        setDate(date);
         setDescription(description);
+        setDate(date);
+        setAmount(amount);
+        setCurrency(currency);
+        
 
     }
 
@@ -53,18 +62,18 @@ public class Expense {
         return amount;
     }
 
-    public void setAmount(final BigDecimal amount) {
+    void setAmount(final BigDecimal amount) {
         if(amount == null){
             throw new NullPointerException("Amount can not be null");
         }
         this.amount = amount;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(final LocalDate date) {
+    void setDate(final Date date) {
         if(date == null){
             throw new NullPointerException("Date can not be null");
         }
@@ -75,10 +84,23 @@ public class Expense {
         return description;
     }
 
-    public void setDescription(final String description) {
-        if(description == null){
+    void setDescription(final String description) {
+        if(StringUtil.isBlank(description)){
             throw new NullPointerException("Description can not be null");
         }
         this.description = description;
     }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        if(currency == null){
+            throw new NullPointerException("Currency can not be null");
+        }
+        this.currency = currency;
+    }
+
+    
 }

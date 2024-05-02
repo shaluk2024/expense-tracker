@@ -10,12 +10,8 @@ const DetailsMain = () => {
   const[data, setData] = useState([]);
 
 
-
   useEffect(() => {
     axios.get(baseURL).then((response) => {
-        //console.log(response)
-        //console.log(response.data)
-        //console.log(response.data.expenses)
         setData(response.data.expenses)
       });
   
@@ -29,13 +25,13 @@ const DetailsMain = () => {
             <Link to="/save" className="link-style">New</Link>
             </span>
         </div>
-        <div className='expenses-container'>
         {
-          data.map((item, index) => <Expense key={index} amount={item.amount} date={item.date} description={item.description}/>)
+          data.map((item, index) => <Expense key={index} 
+          amount={item.amount} 
+          date={new Date(item.date).toString().substring(4, 15)} 
+          description={item.description}
+          currency={item.currency}/>)
         }
-        </div>
-
-         {/* <Expense amount={11000} date={"2020-1-3"} description={"Rent"}/> */}
     </div>
   )
 }

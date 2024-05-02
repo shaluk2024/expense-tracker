@@ -12,6 +12,12 @@ public class GetExpensesSummaryRequest {
 
     private String monthYear;
 
+    
+
+    public GetExpensesSummaryRequest() {
+        super();
+    }
+
     public GetExpensesSummaryRequest(final BigDecimal amount, final String monthYear) {
         this.amount = amount;
         this.monthYear = monthYear;

@@ -15,6 +15,11 @@ public class GetExpensesRequest {
 
     private String description;
 
+
+    public GetExpensesRequest() {
+        super();
+    }
+
     public GetExpensesRequest(final BigDecimal amount, final Date date, final String description) {
         this.amount = amount;
         this.date = date;

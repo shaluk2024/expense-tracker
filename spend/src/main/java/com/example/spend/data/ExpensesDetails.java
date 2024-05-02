@@ -2,7 +2,10 @@ package com.example.spend.data;
 
 import java.io.Serial;
 import java.math.BigDecimal;
-import java.time.LocalDate;
+//import java.time.LocalDate;
+import java.util.Date;
+
+import com.example.spend.domain.Currency;
 
 public class ExpensesDetails {
     @Serial
@@ -10,25 +13,34 @@ public class ExpensesDetails {
 
     private BigDecimal amount;
 
-    private LocalDate date;
+    private Currency currency;
+
+    private Date date;
 
     private String description;
 
-    public ExpensesDetails(final BigDecimal amount, final LocalDate date, final String description) {
+    public ExpensesDetails(final BigDecimal amount, final Date date, final String description, final Currency currency) {
         this.amount = amount;
         this.date = date;
         this.description = description;
+        this.currency = currency;
     }
 
     public BigDecimal getAmount() {
         return amount;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
     public String getDescription() {
         return description;
     }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    
 }

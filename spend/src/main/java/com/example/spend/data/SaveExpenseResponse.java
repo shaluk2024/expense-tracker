@@ -2,7 +2,9 @@ package com.example.spend.data;
 
 import java.io.Serial;
 import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.util.Date;
+
+import com.example.spend.domain.Currency;
 
 public class SaveExpenseResponse {
     @Serial
@@ -10,7 +12,9 @@ public class SaveExpenseResponse {
 
     private BigDecimal amount;
 
-    private LocalDate date;
+    private Currency currency;
+
+    private Date date;
 
     private String description;
 
@@ -22,11 +26,11 @@ public class SaveExpenseResponse {
         this.amount = amount;
     }
 
-    public LocalDate getDate() {
+    public Date getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(Date date) {
         this.date = date;
     }
 
@@ -37,4 +41,14 @@ public class SaveExpenseResponse {
     public void setDescription(String description) {
         this.description = description;
     }
+
+    public Currency getCurrency() {
+        return currency;
+    }
+
+    public void setCurrency(Currency currency) {
+        this.currency = currency;
+    }
+
+    
 }
